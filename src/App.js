@@ -8,32 +8,41 @@ function App() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const cityName = cityRef.current.value;
 		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+			`https://api.openweathermap.org/data/2.5/weather?q=${cityRef.current.value}&appid=${apiKey}`
 		)
 			.then((response) => response.json())
 			.then((data) => setWeather(data))
 			.catch(console.log);
 		cityRef.current.value = '';
 	};
-	weather && console.log(weather);
 
 	return (
 		<div className='App'>
 			<form onSubmit={handleSubmit}>
-				<h1>Search weather by city</h1>
-				<input ref={cityRef} type='text' placeholder='city name'></input>
+				<h1>Search Weather by City</h1>
+				<input ref={cityRef} type='text' placeholder='CITY NAME'></input>
 				<button type='submit'>Search</button>
 			</form>
 
 			{weather && (
 				<div id='weather'>
-					<h1>{weather.name}</h1>
+					<h1>
+						<u>{weather.name}</u>
+					</h1>
 					<ul>
-						<li>condition: {weather.weather[0].description}</li>
-						<li>humidity: {weather.main.humidity}</li>
-						<li>temperature: {weather.main.temp}</li>
+						<li>
+							<span>CONDITION: </span>
+							{weather.weather[0].description}
+						</li>
+						<li>
+							<span>HUMIDITY: </span>
+							{weather.main.humidity}
+						</li>
+						<li>
+							<span>TEMPERATURE: </span>
+							{(((weather.main.temp - 273.15) * 9) / 5 + 32).toFixed(2)} °F
+						</li>
 					</ul>
 				</div>
 			)}

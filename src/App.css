@@ -1,7 +1,41 @@
+body {
+  background-image: url('./weather-bg.jpeg');
+  background-size: cover;
+}
+
 .App {
   text-align: center;
+  color: yellow;
+}
+
+input {
+  margin-right: 10px;
+  text-align: center;
+}
+
+input,
+button {
+  font-size: 20px;
+}
+
+#weather {
+  background-color: rgb(6, 36, 61);
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 2px solid white;
 }
 
 ul {
   list-style-type: none;
+}
+
+li {
+  padding: 5px;
+}
+
+li span {
+  font-weight: bolder;
 }
